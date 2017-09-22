@@ -1,8 +1,12 @@
 import React from 'react';
 
+/**
+ * Class for the navbar on the left side of the page.
+ */
 class NavMenu extends React.Component {
+
   state = {
-    activeBlock: ''
+    activeBlock: '',
   }
 
   /**
@@ -29,19 +33,11 @@ class NavMenu extends React.Component {
   }
 
   render() {
-    const generalInfo = [];
-    const groups = [];
-    this.props.schema.forEach((block) => {
-      if (block.hasOwnProperty('containing_object')) {
-        groups.push(block);
-      } else {
-        generalInfo.push(block);
-      }
-    });
     // For convenience, so we can unfold the object.
     const methods = {
       isActiveBlock: this.isActiveBlock,
-      setActiveBlock: this.setActiveBlock
+      setActiveBlock: this.setActiveBlock,
+      setDetailsGroup: this.props.setDetailsGroup
     };
 
     return (
@@ -50,8 +46,9 @@ class NavMenu extends React.Component {
           Field Groups
         </p>
         <ul className="menu-list">
-          { <Block name="General Info" containing_object={{properties: generalInfo}} {...methods} /> }
-          { groups.map((group) => <Block {...group} {...methods} key={group.id} />) }
+          { /* Create a block */ }
+          { <Block {...this.props.generalInfo} {...methods} /> }
+          { this.props.groups.map((group) => <Block {...group} {...methods} key={group.id} />) }
         </ul>
       </aside>
     );
@@ -69,7 +66,7 @@ function Block(props) {
   }
 
   return (
-    <li onClick={() => props.setActiveBlock(props.name)} >
+    <li onClick={() => { props.setActiveBlock(props.name); props.setDetailsGroup(props.id) } } >
       <a className={props.isActiveBlock(props.name)}>{props.name}</a>
       <ul>
         {

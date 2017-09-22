@@ -1,5 +1,19 @@
-.box {
+#root {
+  max-width: 800px;
+}
+
+.column {
   height: 600px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+}
+
+.box {
+  overflow: auto;
+}
+
+.details {
+  background-color: hsl(0, 0%, 44%);
+}
+
+#app {
+  background-color: hsl(0, 0%, 66%);
 }
