@@ -1,18 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import NavMenu from './NavMenu';
+import Details from './Details';
 import './App.css';
 
-class App extends Component {
+class App extends React.Component {
+  state = {
+    details: null
+  }
+  /**
+   * Setter method for details; passed down to nav menu items.
+   * @param  {object} details The desired object to show within the schema.
+   */
+  setDetails = (details) => {
+    this.setState({ details });
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div className="columns">
+        <div className="box column is-one-third">
+          <NavMenu schema={this.props.schema} />
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="box column is-two-thirds">
+          <Details details={this.state.details} />
+        </div>
       </div>
     );
   }
