@@ -37,7 +37,8 @@ class NavMenu extends React.Component {
     const methods = {
       isActiveBlock: this.isActiveBlock,
       setActiveBlock: this.setActiveBlock,
-      setDetailsGroup: this.props.setDetailsGroup
+      setDetailsGroup: this.props.setDetailsGroup,
+      setDetailsFocus: this.props.setDetailsFocus
     };
 
     return (
@@ -46,8 +47,7 @@ class NavMenu extends React.Component {
           Field Groups
         </p>
         <ul className="menu-list">
-          { /* Create a block */ }
-          { <Block {...this.props.generalInfo} {...methods} /> }
+          <Block {...this.props.generalInfo} {...methods} />
           { this.props.groups.map((group) => <Block {...group} {...methods} key={group.id} />) }
         </ul>
       </aside>
@@ -71,7 +71,7 @@ function Block(props) {
       <ul>
         {
           childBlocks.map((block) => (
-            <li key={block.id}>
+            <li key={block.id} onClick={(e) => {e.stopPropagation(); props.setDetailsFocus(block.id);} }>
               <a>
                 {block.name}
               </a>
@@ -79,10 +79,6 @@ function Block(props) {
           ))
         }
       </ul>
-    {
-      // {block.data_type}
-      // {block.app_keys}
-    }
     </li>
   );
 }
