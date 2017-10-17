@@ -1,53 +1,32 @@
 import React from 'react';
-import NavMenu from './NavMenu';
-import Details from './Details';
 import './App.css';
+import InfiniteScroll from './InfiniteScroll';
 
-class App extends React.Component {
-  state = {
-    // The group for the details pane to display
-    selectedGroup: this.props.generalInfo,
-    // The ID of the element for the details pane to focus on
-    focusedElement: null
-  }
-  /**
-   * Setter method for the details pane; passed down to nav menu items.
-   * @param  {int} groupId The group's ID. -1 for the 'generalInfo' group.
-   */
-  setDetailsGroup = (groupId) => {
-    if (groupId === -1) {
-      this.setState({ selectedGroup: this.props.generalInfo, focusedElement: null });
-    } else {
-      // trawl through the rest of the schema and find and set our group
-      let selectedGroup = this.props.groups.find((group) => {
-        return group.id === groupId;
-      });
-      selectedGroup && this.setState({ selectedGroup, focusedElement: null });
-    }
-  }
-
-  /**
-   * Setter method for the scroll of the details pane; passed down to nav menu items
-   * @param  {int} elementId The ID for the specific element we want to scroll to
-   */
-  setDetailsFocus = (elementId) => {
-    this.setState({ focusedElement: elementId });
-  }
-
-  render() {
-    return (
-      <div id="app" className="box columns">
-        <div className="box column is-one-third">
-          <NavMenu generalInfo={this.props.generalInfo} groups={this.props.groups}
-                   setDetailsGroup={this.setDetailsGroup}
-                   setDetailsFocus={this.setDetailsFocus} />
+function App (props) {
+  return (
+    <div className="is-dark">
+    <div id="app" className="container">
+      <section id="header" className="hero is-info">
+        <div className="hero-body container has-text-centered">
+          <h1 className="title">
+          Improved Goggles
+          </h1>
+          <h2 className="subtitle">
+          (it's an infinite scroll json viewer)
+          </h2>
         </div>
-        <div className="details box column is-two-thirds">
-          <Details group={this.state.selectedGroup} focus={this.state.focusedElement} />
-        </div>
-      </div>
-    );
-  }
+      </section>
+
+      <InfiniteScroll endpoint={props.endpoint} />
+
+      <footer className="footer">
+          <div className="content has-text-centered">
+            <p><strong>Improved Goggles</strong> uses data from <a href={props.endpoint}>{props.provider}</a>.</p>
+          </div>
+      </footer>
+    </div>
+    </div>
+  );
 }
 
 export default App;

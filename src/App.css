@@ -1,19 +1,42 @@
 #root {
-  max-width: 800px;
+  /*max-width: 800px;*/
 }
 
 .column {
-  height: 600px;
+  /*height: 600px;*/
 }
 
 .box {
-  overflow: auto;
+  /*overflow: auto;*/
 }
 
 .details {
-  background-color: hsl(0, 0%, 44%);
+  /*background-color: hsl(0, 0%, 44%);*/
 }
 
 #app {
-  background-color: hsl(0, 0%, 66%);
+  border-color: hsl(0, 0%, 66%);
+}
+
+#header {
+  max-height: 15vh;
+}
+
+.hero-body {
+  padding: 1rem 1rem;
+}
+
+#infinite-scroll {
+  overflow-y: scroll;
+  height: 80vh;
+  margin-bottom: 0;
+}
+
+.footer {
+  height: 5vh;
+  padding: 1rem 1.5rem 3rem;
+}
+
+.press-release-title {
+  max-width: 30rem;
 }
