@@ -4,7 +4,7 @@ function PressRelease(props) {
   return (
     <nav className="box level press-release">
       <div className="level-left">
-        <div className="level-item content">
+        <div className="level-item content press-release-title">
           <p>{props.title}</p>
         </div>
       </div>

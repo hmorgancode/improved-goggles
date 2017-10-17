@@ -37,6 +37,6 @@
   padding: 1rem 1.5rem 3rem;
 }
 
-.press-release {
-  /*padding: 1rem;*/
+.press-release-title {
+  max-width: 30rem;
 }

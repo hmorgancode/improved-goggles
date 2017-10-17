@@ -17,9 +17,7 @@ function App (props) {
         </div>
       </section>
 
-      <div id="infinite-scroll" className="box">
-        <InfiniteScroll endpoint={props.endpoint} />
-      </div>
+      <InfiniteScroll endpoint={props.endpoint} />
 
       <footer className="footer">
           <div className="content has-text-centered">
